@@ -5,7 +5,7 @@
 
 #防火墙放行端口
 function chk_firewall() {
-	if [ -e "/usr/sbin/iptables" ]
+	if [ -e "/etc/sysconfig/iptables" ]
 	then
 		iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
 		service iptables save
