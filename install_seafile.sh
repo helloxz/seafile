@@ -20,7 +20,7 @@ function chk_firewall() {
 function install_sea() {
 	cd /home/MyCloud
 	#下载安装包6.0.9 64bit
-	wget http://soft.hixz.org/linux/seafile-server_6.0.9_x86-64.tar.gz
+	wget http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.0.9_x86-64.tar.gz
 	#解压
 	tar -zxvf seafile-server_6.0.9_x86-64.tar.gz
 	mkdir installed
