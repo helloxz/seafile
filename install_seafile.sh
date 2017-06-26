@@ -20,9 +20,9 @@ function chk_firewall() {
 function install_sea() {
 	cd /home/MyCloud
 	#下载安装包6.0.9 64bit
-	wget http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.0.9_x86-64.tar.gz
+	wget http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.1.1_x86-64.tar.gz
 	#解压
-	tar -zxvf seafile-server_6.0.9_x86-64.tar.gz
+	tar -zxvf seafile-server_6.1.1_x86-64.tar.gz
 	mkdir installed
 	mv seafile-server*.tar.gz ./installed
 	mv seafile-server-6* seafile-server
@@ -35,7 +35,9 @@ function install_sea() {
 	./seafile.sh start &&  ./seahub.sh start
 	#防火墙放行端口
 	chk_firewall
-	echo "恭喜，安装完成。请访问：http://IP:8000"
+	#获取IP
+	osip=$(curl http://https.tn/ip/myip.php?type=onlyip)
+	echo "恭喜，安装完成。请访问：http://${osip}:8000"
 	echo "帮助文档请访问：https://www.xiaoz.me/archives/8480"
 }
 
