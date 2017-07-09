@@ -8,10 +8,12 @@ function chk_firewall() {
 	if [ -e "/etc/sysconfig/iptables" ]
 	then
 		iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
+		iptables -I INPUT -p tcp --dport 8082 -j ACCEPT
 		service iptables save
 		service iptables restart
 	else
-		firewall-cmd --zone=public --add-port=8000/tcp --permanent 
+		firewall-cmd --zone=public --add-port=8000/tcp --permanent
+		firewall-cmd --zone=public --add-port=8082/tcp --permanent
 		firewall-cmd --reload
 	fi
 }
