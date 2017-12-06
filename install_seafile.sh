@@ -1,6 +1,7 @@
 #!/bin/bash
 ################ 一键安装Seafile脚本 ##################
 #Author:xiaoz.me
+#Update:2017-12-06
 #######################   END   #######################
 
 #防火墙放行端口
@@ -21,10 +22,10 @@ function chk_firewall() {
 #安装seafile函数
 function install_sea() {
 	cd /home/MyCloud
-	#下载安装包6.0.9 64bit
-	wget http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.1.1_x86-64.tar.gz
+	#下载安装包6.2.3 64bit
+	wget http://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_6.2.3_x86-64.tar.gz
 	#解压
-	tar -zxvf seafile-server_6.1.1_x86-64.tar.gz
+	tar -zxvf seafile-server_6.2.3_x86-64.tar.gz
 	mkdir installed
 	mv seafile-server*.tar.gz ./installed
 	mv seafile-server-6* seafile-server
@@ -37,10 +38,17 @@ function install_sea() {
 	./seafile.sh start &&  ./seahub.sh start
 	#防火墙放行端口
 	chk_firewall
+	#开机启动
+	echo "/home/MyCloud/seafile-server/seafile.sh start" >> /etc/rc.d/rc.local
+	echo "/home/MyCloud/seafile-server/seahub.sh start" >> /etc/rc.d/rc.local
+	chmod u+x /etc/rc.d/rc.local
 	#获取IP
 	osip=$(curl http://https.tn/ip/myip.php?type=onlyip)
+	echo "------------------------------------------------------"
 	echo "恭喜，安装完成。请访问：http://${osip}:8000"
 	echo "帮助文档请访问：https://www.xiaoz.me/archives/8480"
+	echo "阿里云用户请注意放行端口(8000/8082)：https://www.xiaoz.me/archives/9310"
+	echo "------------------------------------------------------"
 }
 
 echo "##########	欢迎使用Seafile一键安装脚本^_^	##########"
