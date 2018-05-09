@@ -43,7 +43,7 @@ function install_sea() {
 	echo "/home/MyCloud/seafile-server/seahub.sh start" >> /etc/rc.d/rc.local
 	chmod u+x /etc/rc.d/rc.local
 	#获取IP
-	osip=$(curl http://awk.sh/ip/myip.php?type=onlyip)
+	osip=$(curl https://api.ip.sb/ip)
 	echo "------------------------------------------------------"
 	echo "恭喜，安装完成。请访问：http://${osip}:8000"
 	echo "帮助文档请访问：https://www.xiaoz.me/archives/8480"
